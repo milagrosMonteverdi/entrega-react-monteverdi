@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import ItemCount from './ItemCount';
 import { DetailContainer, WrapperDetail, ImgContainer, ImageDetail, InfoContainer, Title, Desc, Price } from './styledComponents';
 import { CartContext } from './CartContext';
-import swal from 'sweetalert';
+
 
 const ItemDetail = ({ item }) => {
     const [itemCount, setItemCount] = useState(0);

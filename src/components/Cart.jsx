@@ -7,6 +7,7 @@ import { doc, setDoc, collection, increment } from 'firebase/firestore';
 import {db} from '../utils/firebaseConfig';
 import FormatNumber from "../utils/FormatNumber";
 import styled from "styled-components";
+import swal from 'sweetalert';
 
 const Top = styled.div`
   display: flex;
@@ -93,15 +94,15 @@ const Cart = () => {
     
       }
 
-      const createOrderInFirestore = async () => {
+      const createOrderInFirestore = async () =>{
         const newOrderRef = doc(collection(db, "orders"))
-         await setDoc(newOrderRef, order);
-        return newOrderRef
+        await setDoc(newOrderRef, order);
+        return newOrderRef;
       }
 
       createOrderInFirestore ()
        .then(result => {
-          alert(" Tu orden ha sido creada, Numero de ref:  " + result.id )
+          swal(" Tu orden ha sido creada, Numero de ref:  " + result.id )
           
           //actualizar stock
           test.cartList.forEach(async(item) => {
