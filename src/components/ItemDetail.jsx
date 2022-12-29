@@ -1,10 +1,19 @@
+import { Button } from '@material-ui/core';
+import { useState, useContext } from 'react';
+import { Link } from 'react-router-dom';
 import ItemCount from './ItemCount';
 import { DetailContainer, WrapperDetail, ImgContainer, ImageDetail, InfoContainer, Title, Desc, Price } from './styledComponents';
+import { CartContext } from './CartContext';
+import swal from 'sweetalert';
 
 const ItemDetail = ({ item }) => {
+    const [itemCount, setItemCount] = useState(0);
+    const test = useContext(CartContext);
 
     const onAdd = (qty) => {
-        alert("You have selected " + qty + " items.");
+        swal("Elegiste " + qty + " productos.");
+        setItemCount(qty);
+        test.addToCart(item, qty);
     }
 
     return (
@@ -23,10 +32,14 @@ const ItemDetail = ({ item }) => {
                         <Price>$ {item.cost}</Price>
                         <Desc>{item.stock} unidades en stock</Desc>
                     </InfoContainer>
-                    <ItemCount stock={item.stock} initial={1} onAdd={onAdd} />
+                    {
+                        itemCount === 0
+                        ? <ItemCount stock={item.stock} initial={itemCount} onAdd={onAdd} />
+                        : <Link to='/cart' style={{textDecoration: "none"}}><Button variant="contained" color="secondary">CheckOut</Button></Link>
+                    }
                 </WrapperDetail>
             </DetailContainer>
-            : <p>Aguarda unos segundos...</p>
+            : <p>Cargando...</p>
         }
         </>
     );

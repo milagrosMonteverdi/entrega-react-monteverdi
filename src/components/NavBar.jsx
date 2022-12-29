@@ -7,7 +7,7 @@ const NavBar = () => {
     return (
         <AppBar position="relative">
             <Wrapper>
-                <Left>
+            <Left>
                     <Link to='/' style={{textDecoration: "none", color: "black"}}><Logo>THE COFFE STORE</Logo></Link>
                 </Left>
                 <Center>
@@ -16,9 +16,9 @@ const NavBar = () => {
                     <Link to='/category/5' style={{textDecoration: "none", color: "black"}}><MenuItem>ACCESORIOS</MenuItem></Link>                    
                 </Center>
                 <Right>
-                    <MenuItem>REGISTRATE</MenuItem>
+                    <MenuItem>REGISTER</MenuItem>
                     <MenuItem>SIGN IN</MenuItem>
-                    <MenuItem><CartWidget /></MenuItem>
+                    <MenuItem><Link to='/cart' style={{textDecoration: "none", color: "white"}}><CartWidget /></Link></MenuItem>
                 </Right>
             </Wrapper>
         </AppBar>
